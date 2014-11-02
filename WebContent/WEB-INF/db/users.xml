@@ -1,0 +1,27 @@
+<users>
+	<user>
+		<username>master</username>
+		<password>sudo</password>
+		<role>teacher</role>
+	</user>
+	<user>
+		<username>Andrew</username>
+		<password>juventus</password>
+		<role>student</role>
+	</user>
+	<user>
+		<username>Emo</username>
+		<password>mentos</password>
+		<role>student</role>
+	</user>
+	<user>
+		<username>daniel</username>
+		<password>lions</password>
+		<role>student</role>
+	</user>
+	<user>
+		<username>noah</username>
+		<password>arc</password>
+		<role>teacher</role>
+	</user>
+</users>
