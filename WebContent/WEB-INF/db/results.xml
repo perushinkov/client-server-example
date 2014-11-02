@@ -1,0 +1,11 @@
+<results>
+	<result>
+		<user>master</user>
+		<test>AES_123</test>
+		<timestamp>1414959249</timestamp>
+		<answers>
+			<answer>1</answer>
+			<answer>1</answer>
+		</answers>
+	</result>
+</results>
