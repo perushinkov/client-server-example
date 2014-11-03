@@ -8,6 +8,12 @@ import javax.servlet.ServletContext;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -41,6 +47,7 @@ public class DB {
 			loadTests();
 			loadResults();
 			
+			saveFiles(true, true, true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,5 +123,97 @@ public class DB {
 			String userrole = user.getElementsByTagName("role").item(0).getFirstChild().getTextContent();
 			users.add(new ExamUser(username, password, userrole));
 		}
+	}
+	/**
+	 * adds a user to users.
+	 * @param user
+	 */
+	public void addUser(ExamUser user) {
+		users.add(user);
+	}
+	/**
+	 * adds a test to tests.
+	 * @param test
+	 */
+	public void addTest(ExamTest test) {
+		tests.add(test);
+	}
+	/**
+	 * adds a result to results.
+	 * @param result
+	 */
+	public  void addResult(ExamResult result) {
+		results.add(result);
+	}
+	
+	public boolean saveFiles(boolean saveUsers, boolean saveTests, boolean saveResults){
+		DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder;
+        
+        try{
+        	builder = fact.newDocumentBuilder();
+        	if(saveUsers) {
+        		Document doc = builder.newDocument();
+            	Element topElem = doc.createElement("users");
+            	doc.appendChild(topElem);
+            	for (ExamUser user: users) {
+            		topElem.appendChild(getUserElement(doc, user));
+            	}
+            	docToFile(doc, usersFile);
+        	}
+        	if(saveTests) {
+        		Document doc = builder.newDocument();
+            	Element topElem = doc.createElement("tests");
+            	doc.appendChild(topElem);
+            	for (ExamTest test: tests) {
+            		topElem.appendChild(getTestElement(doc, test));
+            	}
+            	docToFile(doc, testsFile);
+        	}
+        	if(saveResults) {
+        		Document doc = builder.newDocument();
+            	Element topElem = doc.createElement("results");
+            	doc.appendChild(topElem);
+            	for (ExamResult result: results) {
+            		topElem.appendChild(getResultElement(doc, result));
+            	}
+            	docToFile(doc, resultsFile);
+        	}
+        } catch (Exception e) {
+        	return false;
+        }
+        return true;
+	}
+	private Node getResultElement(Document doc, ExamResult result) {
+		Element resultElem = doc.createElement("result");
+		resultElem.appendChild(getElem(doc, "user", result.getUser()));
+		resultElem.appendChild(getElem(doc, "test", result.getTest()));
+		resultElem.appendChild(getElem(doc, "timestamp", Long.toString(result.getTimestamp())));
+        //TODO: add answers here 
+		return resultElem;
+	}
+	private Node getTestElement(Document doc, ExamTest test) {
+		// TODO save to file. See above method 
+		return null;
+	}
+	private Node getUserElement(Document doc, ExamUser user) {
+		Element userElem = doc.createElement("user");
+        userElem.appendChild(getElem(doc, "username", user.getUsername()));
+        userElem.appendChild(getElem(doc, "password", user.getPassword()));
+        userElem.appendChild(getElem(doc, "role", user.getRole()));
+        return userElem;
+	}
+	private Node getElem(Document doc, String nodeName, String textContent) {
+		Element node = doc.createElement(nodeName);
+		node.appendChild(doc.createTextNode(textContent));
+		return node;
+	}
+	private void docToFile(Document doc, File file) throws TransformerException {
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		DOMSource source = new DOMSource(doc);
+		StreamResult result = new StreamResult(file);
+		transformer.transform(source, result);
+		
 	}
 }

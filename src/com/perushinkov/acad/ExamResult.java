@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ExamResult {
 	private String user;
-	private String test;
+		private String test;
 	private long timestamp;
 	private ArrayList<Integer> answers;
 	
@@ -18,5 +18,18 @@ public class ExamResult {
 	
 	void addAnswer(Integer selected) {
 		answers.add(selected);
+	}
+	
+	public String getUser() {
+		return user;
+	}
+	public String getTest() {
+		return test;
+	}
+	public long getTimestamp() {
+		return timestamp;
+	}
+	public ArrayList<Integer> getAnswers() {
+		return answers;
 	}
 }
