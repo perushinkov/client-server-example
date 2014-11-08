@@ -189,13 +189,43 @@ public class DB {
 		resultElem.appendChild(getElem(doc, "user", result.getUser()));
 		resultElem.appendChild(getElem(doc, "test", result.getTest()));
 		resultElem.appendChild(getElem(doc, "timestamp", Long.toString(result.getTimestamp())));
-        //TODO: add answers here 
+		ArrayList<Integer> answers = result.getAnswers();
+		Element answersElem = doc.createElement("answers");
+		for (Integer answerId: answers) {
+			answersElem.appendChild(getElem(doc, "answer", Integer.toString(answerId)));
+		}
+		resultElem.appendChild(answersElem);
 		return resultElem;
 	}
 	private Node getTestElement(Document doc, ExamTest test) {
-		// TODO save to file. See above method 
-		return null;
+		Element eTest = doc.createElement("test");
+		
+		eTest.appendChild(getElem(doc, "id", test.getId()));
+		
+		Element eQuestions = doc.createElement("questions");
+		ArrayList<ExamQuestion> arrQuests = test.getQuestions();
+		for (ExamQuestion eq: arrQuests) {
+			eQuestions.appendChild(getExamQuestionElement(doc, eq));
+		}
+		eTest.appendChild(eQuestions);
+		return eTest;
 	}
+	
+	private Node getExamQuestionElement(Document doc, ExamQuestion eq) {
+		Element eQuestion = doc.createElement("question");
+		
+		eQuestion.appendChild(getElem(doc, "text", eq.getText()));
+		
+		Element eOptions = doc.createElement("options");
+		ArrayList<String> arrAns = eq.getAnswers();
+		for (String ans: arrAns) {
+			eOptions.appendChild(getElem(doc, "option", ans));
+		}
+		eQuestion.appendChild(getElem(doc, "correctOption", Integer.toString(eq.getCorrectAnswer())));
+		
+		return eQuestion;
+	}
+	
 	private Node getUserElement(Document doc, ExamUser user) {
 		Element userElem = doc.createElement("user");
         userElem.appendChild(getElem(doc, "username", user.getUsername()));

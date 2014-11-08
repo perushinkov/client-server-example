@@ -1,42 +1,46 @@
 <tests>
 	<test>
 		<id>AES_123</id>
-		<question>
-			<text>What's the size of the moon?</text>
-			<options>
-				<option>4 cm</option>
-				<option>3000 cm</option>
-			</options>
-			<correctOption>1</correctOption>
-		</question>
-		<question>
-			<text>What's the size of an elephant?</text>
-			<options>
-				<option>The same as the moon</option>
-				<option>A circle</option>
-			</options>
-			<correctOption>0</correctOption>
-		</question>
+		<questions>
+			<question>
+				<text>What's the size of the moon?</text>
+				<options>
+					<option>4 cm</option>
+					<option>3000 cm</option>
+				</options>
+				<correctOption>1</correctOption>
+			</question>
+			<question>
+				<text>What's the size of an elephant?</text>
+				<options>
+					<option>The same as the moon</option>
+					<option>A circle</option>
+				</options>
+				<correctOption>0</correctOption>
+			</question>
+		</questions>
 	</test>
 	<test>
 		<id>Warm_Winter</id>
-		<question>
-			<text>What's your name?</text>
-			<options>
-				<option>Emo</option>
-				<option>Yordan</option>
-			</options>
-			<correctOption>1</correctOption>
-		</question>
-		<question>
-			<text>What's the value of a pie?</text>
-			<options>
-				<option>3.14</option>
-				<option>3.1415</option>
-				<option>3.14159265</option>
-				<option>Nutritional!</option>
-			</options>
-			<correctOption>3</correctOption>
-		</question>
+		<questions>
+			<question>
+				<text>What's your name?</text>
+				<options>
+					<option>Emo</option>
+					<option>Yordan</option>
+				</options>
+				<correctOption>1</correctOption>
+			</question>
+			<question>
+				<text>What's the value of a pie?</text>
+				<options>
+					<option>3.14</option>
+					<option>3.1415</option>
+					<option>3.14159265</option>
+					<option>Nutritional!</option>
+				</options>
+				<correctOption>3</correctOption>
+			</question>
+		</questions>
 	</test>
 </tests>
