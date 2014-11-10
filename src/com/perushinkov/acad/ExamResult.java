@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ExamResult {
 	private String user;
-		private String test;
+	private String test;
 	private long timestamp;
 	private ArrayList<Integer> answers;
 	
@@ -18,6 +18,15 @@ public class ExamResult {
 	
 	void addAnswer(Integer selected) {
 		answers.add(selected);
+	}
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("User: " + user + "\n");
+		sb.append("TestId: " + test + "\n");
+		sb.append("Milliseconds since 1970: " + timestamp + "\n");
+		sb.append("Answers: " + answers.toString() + "\n");
+		return sb.toString();
 	}
 	
 	public String getUser() {

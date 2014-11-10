@@ -28,6 +28,7 @@ public class DB {
 	
 	private ArrayList<ExamUser> users;
 	private ArrayList<ExamTest> tests;
+	
 	private ArrayList<ExamResult> results;
 	
 	public DB(String rootPath){
@@ -245,5 +246,34 @@ public class DB {
 		StreamResult result = new StreamResult(file);
 		transformer.transform(source, result);
 		
+	}
+	
+	public ArrayList<ExamUser> getUsers() {
+		return users;
+	}
+	
+	public ExamUser getUser(String userName) {
+		for (ExamUser user: users) {
+			if (user.getUsername().equals(userName)) {
+				return user;
+			}
+		}
+		return null;
+	}
+	
+	public ArrayList<ExamTest> getTests() {
+		return tests;
+	}
+	public ArrayList<ExamResult> getResults() {
+		return results;
+	}
+	public ArrayList<ExamResult> getResults(String userName) {
+		ArrayList<ExamResult> foundResults = new ArrayList<ExamResult>();
+		for (ExamResult result:results) {
+			if (result.getUser().equals(userName)) {
+				foundResults.add(result);
+			}
+		}
+		return foundResults;
 	}
 }
