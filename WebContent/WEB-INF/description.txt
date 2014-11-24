@@ -1,0 +1,103 @@
+$var = 5;
+$var = "Five";
+
+<?php 
+//INSERT PHP HERE
+/* mwahahaha */
+echo $var;
+echo "Var value: " . $var; // Concatenation. Output: Var value: Five
+
+echo "Var value: $var"; // Output: Var value: Five
+echo 'Var value: $var'; // Output: Var value: $var
+echo "Meko i daleko {$var}text"; //Output: Meko i daleko Fivetext
+
+$a = 2;
+$b = 10;
+echo $a**$b; // Output: 1024
+
+if (cond) {
+}elseif(cond){
+}else{
+}
+
+
+//Keywords: ! || && == === != !==
+
+foreach($arr as $single) { //iterates through all values(not keys)
+	echo $single;
+}
+
+//Arrays are maps... like Ecmascript 6
+$arr = array("One", "Two", "Three");
+$arrCnt = count($arr);
+for($i=0;$i<arrCnt;$i++)
+	echo $arr[$i];
+	
+$arr = array("1"=>"One", "2"=>"Two","3"=>"Three","One"=>1);
+
+foreach($arr as $key => $value) {
+//COUT OF SOME SORT 
+}
+
+array_push($arr, $value);
+array_push($arr, $key=>$value);
+sort($arr);
+rsort($arr);
+ksort($arr);
+
+function frame() {}
+function frame($param) {}
+function frame($param1, $p2 = 5) {}
+
+//SCOPE:
+
+$var = "Text";
+f2();
+function f2() {
+	echo $var; //ERROR!
+	global $var;
+	echo $var; //OK if it's already been defined
+}
+
+
+//MODULES:
+
+//AProcessing.php
+functionA(){
+...
+}
+
+//AView.php
+
+
+include_once "AProcessing.php";
+include "sep.php";
+
+//If not present will throw error
+require_once "mwhaha";
+require "tamtaram";
+
+
+//FORMS
+
+<form action="BlaBla.php" method="get">
+	<input type="text" name="searchText"/>
+	<input type="submit" value="search"/>
+</form>
+
+//process.php
+<?php
+	echo $_GET["searchText"]; //WILL fail if it's been sent by Post
+	
+	echo $_REQUEST["searchText"]; // will work with both get and post
+	
+!?!	if(array_exist($_GET, "searchText");
+?>
+
+
+
+
+
+
+
+?>
